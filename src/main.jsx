@@ -3,10 +3,12 @@ import { createRoot } from "react-dom/client";
 import "./index.css";
 import App from "./App.jsx";
 import { Navbar } from "./navbar.jsx";
+import { Score } from "./Score.jsx";
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>
     <Navbar />
+    <Score />
     <App />
   </StrictMode>,
 );
