@@ -9,7 +9,9 @@ export default function App() {
   const [data, setData] = useState([]);
   const [cardKey, setCardKey] = useState([]);
   const [score, setScore] = useState(0);
-  const [bestScore, setBestScore] = useState(0);
+  const [bestScore, setBestScore] = useState(() => {
+    return Number(localStorage.getItem("bestScore")) || 0;
+  });
   const [streak, setStreak] = useState(0);
 
   function shuffle(key) {
@@ -35,6 +37,12 @@ export default function App() {
       setScore((prev) => prev + 100);
       setStreak((prev) => prev + 1);
     }
+  }
+
+  function resetGame() {
+    setScore(0);
+    setCardKey([]);
+    setStreak(0);
   }
 
   useEffect(() => {
@@ -78,7 +86,9 @@ export default function App() {
         ))}
       </div>
       <div className="restart-btn-wrapper">
-        <button className="restart-btn">RESTART GAME</button>
+        <button className="restart-btn" onClick={() => resetGame()}>
+          RESTART GAME
+        </button>
       </div>
     </>
   );

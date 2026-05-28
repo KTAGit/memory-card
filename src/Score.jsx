@@ -1,4 +1,9 @@
+import { useEffect } from "react";
+
 export function Score(score) {
+  useEffect(() => {
+    localStorage.setItem("bestScore", score.bestScore);
+  }, [score.bestScore]);
   return (
     <div className="score-wrapper">
       <div className="current-score-wrapper">
