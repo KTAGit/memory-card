@@ -5,6 +5,10 @@ const accessKey = import.meta.env.VITE_UNSPLASH_ACCESS_KEY;
 
 export default function App() {
   const [data, setData] = useState([]);
+  const [cardKey, setCardKey] = useState([]);
+  const [score, setScore] = useState(0);
+  const [bestScore, setBestScore] = useState(0);
+  const [streak, setStreak] = useState(0);
 
   function shuffle(key) {
     const shuffled = [...data];
@@ -16,6 +20,19 @@ export default function App() {
     }
 
     setData(shuffled);
+  }
+
+  function hundleCardClick(key) {
+    if (cardKey.includes(key)) {
+      setBestScore((prev) => Math.max(prev, score));
+      setScore(0);
+      setCardKey([]);
+      setStreak(0);
+    } else {
+      setCardKey((prev) => [...prev, key]);
+      setScore((prev) => prev + 100);
+      setStreak((prev) => prev + 1);
+    }
   }
 
   useEffect(() => {
@@ -49,7 +66,10 @@ export default function App() {
           <img
             key={photo.id}
             src={photo.urls.regular}
-            onClick={() => shuffle(photo.id)}
+            onClick={() => {
+              shuffle(photo.id);
+              hundleCardClick(photo.id);
+            }}
           />
         ))}
       </div>
