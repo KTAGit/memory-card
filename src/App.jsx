@@ -1,5 +1,7 @@
 import { useEffect, useState } from "react";
 import "./App.css";
+import { Navbar } from "./navbar.jsx";
+import { Score } from "./Score.jsx";
 
 const accessKey = import.meta.env.VITE_UNSPLASH_ACCESS_KEY;
 
@@ -61,6 +63,8 @@ export default function App() {
   }, []);
   return (
     <>
+      <Navbar streak={streak} />
+      <Score score={score} bestScore={bestScore} />
       <div className="image-wrapper">
         {data.map((photo) => (
           <img
