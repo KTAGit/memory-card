@@ -6,6 +6,18 @@ const accessKey = import.meta.env.VITE_UNSPLASH_ACCESS_KEY;
 export default function App() {
   const [data, setData] = useState([]);
 
+  function shuffle(key) {
+    const shuffled = [...data];
+
+    for (let i = shuffled.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+
+      [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+    }
+
+    setData(shuffled);
+  }
+
   useEffect(() => {
     const fetchImg = async () => {
       try {
@@ -31,10 +43,19 @@ export default function App() {
     fetchImg();
   }, []);
   return (
-    <div className="image-wrapper">
-      {data.map((photo, index) => (
-        <img key={index} src={photo.urls.regular} />
-      ))}
-    </div>
+    <>
+      <div className="image-wrapper">
+        {data.map((photo) => (
+          <img
+            key={photo.id}
+            src={photo.urls.regular}
+            onClick={() => shuffle(photo.id)}
+          />
+        ))}
+      </div>
+      <div className="restart-btn-wrapper">
+        <button className="restart-btn">RESTART GAME</button>
+      </div>
+    </>
   );
 }
