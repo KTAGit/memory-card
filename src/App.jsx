@@ -76,6 +76,7 @@ export default function App() {
       <div className="image-wrapper">
         {data.map((photo) => (
           <img
+            className="card"
             key={photo.id}
             src={photo.urls.regular}
             onClick={() => {
