@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import "./App.css";
-import { Navbar } from "./navbar.jsx";
+import { Navbar } from "./Navbar.jsx";
 import { Score } from "./Score.jsx";
 
 const accessKey = import.meta.env.VITE_UNSPLASH_ACCESS_KEY;
