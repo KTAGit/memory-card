@@ -67,6 +67,10 @@ body {
   margin: 0;
 }
 
+.won {
+  border: solid 1px #45fa5ae6 !important;
+}
+
 .current-score-display {
   font-size: 1.4rem;
   color: #ffffff;

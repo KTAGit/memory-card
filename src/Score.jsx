@@ -6,7 +6,13 @@ export function Score(score) {
   }, [score.bestScore]);
   return (
     <div className="score-wrapper">
-      <div className="current-score-wrapper">
+      <div
+        className={
+          score.score === 1600
+            ? "current-score-wrapper won"
+            : "current-score-wrapper"
+        }
+      >
         <p className="current-score-label">CURRENT SCORE</p>
         <p className="current-score-display">{score.score}</p>
       </div>
